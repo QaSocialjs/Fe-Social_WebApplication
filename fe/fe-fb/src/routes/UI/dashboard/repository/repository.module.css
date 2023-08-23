@@ -1,0 +1,60 @@
+
+.container {
+    width: 100%;
+    height: 100%;
+    background:#0d1016;
+    border-right: 1px solid  #4c545c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 2rem 2rem;
+}
+
+.avatar {
+    width: 1.5rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.infoUser {
+    display: flex;
+    gap: 0.5rem;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom:  1px solid  #4c545c;
+}
+.repositoryItem {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    gap: 0.8rem;
+}
+.repositoriTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.findRep {
+    width: 100%;
+}
+.repListItem {
+    padding-bottom: 1rem;
+    border-bottom:  1px solid  #4c545c;
+}
+.showMore {
+    font-size: 13px;
+    font-weight: 400;
+    color:  #78808e;
+}
+.showMore:hover {
+    color: #296bc7;
+    cursor: pointer;
+}
+@media(max-width: 500px) {
+    .container {
+        border: 1px solid  #4c545c;
+        height: fit-content;
+        border-radius: 10px;
+    }   
+}
