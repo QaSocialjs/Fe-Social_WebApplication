@@ -3,7 +3,13 @@ import classes from "./repository.module.css";
 import avt from "../../../../assets/avatar.jpg";
 import Input from "../../../../components/input";
 import CardRep from "./CardRep";
+import Button from "../../../../components/Button";
+import { Outlet, useNavigate } from "react-router-dom";
 const Repository = (props: any) => {
+  const navigate = useNavigate();
+  const handleNaigate = () => {
+    navigate("/Dashboard/New");
+  };
   const list = [
     {
       name: "NNQA/sadsad",
@@ -19,11 +25,12 @@ const Repository = (props: any) => {
     <div className={classes.container}>
       <div className={classes.infoUser}>
         <img src={avt} alt="" className={classes.avatar} />
-        <h4>{props.title}</h4>
+        <h4>NNQA</h4>
       </div>
       <div className={classes.repositoryItem}>
         <div className={classes.repositoriTitle}>
-          <p>{props.topRep}</p>
+          <p>Top Repository</p>
+          <Button onClick={handleNaigate}></Button>
         </div>
         <div className={classes.findRep}>
           <Input
@@ -46,6 +53,7 @@ const Repository = (props: any) => {
           <p>Show more</p>
         </div>
       </div>
+      <Outlet></Outlet>
     </div>
   );
 };

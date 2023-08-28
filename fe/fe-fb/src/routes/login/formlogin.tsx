@@ -45,7 +45,7 @@ const Formlogin = (props: any) => {
       <div className={classes.routeToSignup}>
         <p>
           New to C.M.RAP?{" "}
-          <Link className={classes.link} to={"/Signup"}>
+          <Link className={classes.link} to={"Signup"}>
             Create an Account
           </Link>
           .
