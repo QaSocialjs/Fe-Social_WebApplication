@@ -1,0 +1,20 @@
+
+
+.buttonBox {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    background-color: #248334;
+    width: fit-content;
+    padding: 2px 4px;
+    border-radius: 7px;
+    font-size: 12px !important;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.text {
+    margin-right: 2px;
+    letter-spacing: 1px;
+    font-size: 13px !important;
+}
