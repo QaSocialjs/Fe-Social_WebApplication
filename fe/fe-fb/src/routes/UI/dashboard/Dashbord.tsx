@@ -2,37 +2,18 @@ import classes from "./dashboard.module.css";
 import Icon from "../../../components/Icon";
 import Icon2 from "../../../components/Icon2";
 import avatar from "../../../assets/avatar.jpg";
-import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Logout } from "../../../store/authSlice";
-import Repository from "./repository/Repository";
 import Showdialogrep from "./overlays/Showdialogrep";
-import Interceptor from "../../../lib/RefreshToken";
-function Dashbord() {
-  const { accesstoken } = useSelector((state: any) => state.auth);
+
+function Dashbord(props: any) {
   const [dialog, setDialog] = useState<boolean>(false);
-  const axiosJWT = axios.create();
-  Interceptor(axiosJWT);
-  const navigate = useNavigate();
   const dispacth = useDispatch();
   const ShowDialog = () => {
     setDialog((pre) => !pre);
   };
-  useEffect(() => {
-    console.log(accesstoken);
-    axios.defaults.withCredentials = true;
-    axiosJWT
-      .get("http://localhost:3000/api/v1/Home", {
-        headers: {
-          Authorization: "Bearer " + accesstoken,
-        },
-      })
-      .catch((e) => {
-        navigate("/Error/403");
-      });
-  }, [accesstoken]);
   const handleLogout = () => {
     dispacth(Logout());
   };
@@ -76,13 +57,11 @@ function Dashbord() {
           </div>
         </div>
       </nav>
-      <div>
-        <div className={classes.repository}>
-          <Repository title="NNQA" topRep="Top Repository"></Repository>
-        </div>
+      <div className={classes.subContent}>
+        <Outlet></Outlet>
       </div>
 
-      {dialog ? <Showdialogrep></Showdialogrep> : ""}
+      {dialog ? <Showdialogrep onClose={ShowDialog}></Showdialogrep> : ""}
     </div>
   );
 }
