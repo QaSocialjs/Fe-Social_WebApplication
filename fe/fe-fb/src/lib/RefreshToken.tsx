@@ -14,7 +14,7 @@ const Interceptor = (instance: any) => {
   instance.interceptors.request.use(async (config: any) => {
     let currentDate = new Date();
     const decodedToken: decodedToken = jwt_decode(auth.accesstoken);
-    if (decodedToken.exp * 1000 > currentDate.getTime()) {
+    if (decodedToken.exp * 1000 < currentDate.getTime()) {
       await refreshToken();
       console.log(auth.accesstoken);
       config.headers["Authorization"] = "Bearer " + auth.accesstoken;
