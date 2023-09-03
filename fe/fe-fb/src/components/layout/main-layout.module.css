@@ -1,0 +1,16 @@
+
+
+.mainLayout {
+    display: flex;
+    gap: 0;
+    height: 100vh;
+}
+.childrenMainlayout {
+    width: 75%;
+}
+
+@media  (min-width: 992px) {
+    .mainLayout {
+        gap: 1rem;
+    }
+}
