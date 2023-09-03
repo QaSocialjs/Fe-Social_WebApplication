@@ -1,11 +1,10 @@
-import Icon from "./Icon";
+import Icon from "./Icon/Icon";
 import classess from "./Button.module.css";
 const Button = (props: any) => {
   return (
-    <div className={classess.buttonBox} onClick={props.onClick}>
-      <Icon icon="PlusIcon"></Icon>
-      <p className={classess.text}>New</p>
-    </div>
+    <button className={classess.buttonBox} onClick={props.onClick}>
+      <p className={classess.text}>{props.name}</p>
+    </button>
   );
 };
 

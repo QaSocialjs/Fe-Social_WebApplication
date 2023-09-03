@@ -1,12 +1,13 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashbord from "./routes/UI/dashboard/Dashbord";
-import Repository from "./routes/UI/dashboard/repository/Repository";
-import NewRepository from "./routes/UI/dashboard/New/NewRepository";
 import Login from "./routes/login/login";
 import Signup from "./routes/signup/Signup";
 import Erorr from "./routes/UI/erorr/Erorr";
-import VerifyToken from "./Context/VerifyToken";
+import Home from "./routes/UI/Home/Home";
+import { MainLayout } from "./components/layout/main-layout";
+import Foryou from "./routes/UI/Home/foryou /Foryou";
+import Following from "./routes/UI/Home/Following/Following";
+import { HomeLayout } from "./components/layout/common-layout";
 function App() {
   return (
     <Router>
@@ -14,7 +15,7 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/Signup" element={<Signup />}></Route>
         <Route path="/Error/:id" element={<Erorr />}></Route>
-        <Route
+        {/* <Route
           path="/Dashboard"
           element={
             <VerifyToken>
@@ -24,7 +25,18 @@ function App() {
         >
           <Route index element={<Repository />}></Route>
           <Route path="New" element={<NewRepository />}></Route>
-        </Route>
+        </Route> */}
+
+        <Route
+          path="/Home"
+          element={
+            <MainLayout>
+              <HomeLayout>
+                <Home></Home>
+              </HomeLayout>
+            </MainLayout>
+          }
+        ></Route>
       </Routes>
     </Router>
   );

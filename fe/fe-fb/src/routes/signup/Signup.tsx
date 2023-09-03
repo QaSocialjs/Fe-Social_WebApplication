@@ -1,5 +1,5 @@
 import classes from "./signup.module.css";
-import Icon from "../../components/Icon";
+import Icon from "../../components/Icon/Icon";
 import { useFormik } from "formik";
 import validationSchema from "../../lib/schemaforSignup";
 import axios from "axios";

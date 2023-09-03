@@ -1,6 +1,6 @@
 import classes from "./login.module.css";
 import Formlogin from "./formlogin";
-import Icon from "../../components/Icon";
+import Icon from "../../components/Icon/Icon";
 import { useFormik } from "formik";
 import axios from "axios";
 import validationSchema from "../../lib/schemaforLogin";
