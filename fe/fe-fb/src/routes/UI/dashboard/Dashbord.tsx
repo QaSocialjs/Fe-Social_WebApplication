@@ -1,6 +1,6 @@
 import classes from "./dashboard.module.css";
-import Icon from "../../../components/Icon";
-import Icon2 from "../../../components/Icon2";
+import Icon from "../../../components/Icon/Icon";
+import Icon2 from "../../../components/Icon/Icon2";
 import avatar from "../../../assets/avatar.jpg";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";

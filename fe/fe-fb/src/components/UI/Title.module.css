@@ -1,0 +1,10 @@
+.titleHeader {
+    width: 100%;
+    color: white;
+    font-weight: 600;
+    height: 53px;
+    padding: 1rem 1rem;
+}
+.titleHeader > p {
+    font-size: 1.3rem;
+}

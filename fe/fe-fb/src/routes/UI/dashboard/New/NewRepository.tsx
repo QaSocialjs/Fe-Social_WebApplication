@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./NewRpository.module.css";
 import InputCreate from "../../../../components/InputCreate";
 import avt from "../../../../assets/avatar.jpg";
-import Icon2 from "../../../../components/Icon2";
+import Icon2 from "../../../../components/Icon/Icon2";
 function NewRepository() {
   const [findRepo, SetFindRepo] = useState<boolean>(false);
   const handleFindRepo = () => {

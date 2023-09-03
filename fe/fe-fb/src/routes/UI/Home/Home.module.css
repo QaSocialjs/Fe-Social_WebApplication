@@ -1,0 +1,44 @@
+.sectionHome {
+    color: white;
+    width: 60%;
+    border-left: 0.2px solid rgba(255, 255, 255, 0.2);
+    height: 100vh;
+}
+.chossionHome {
+    display: flex;
+    height: 53px;
+    justify-content: space-between;
+    border-bottom: 0.2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+.foryou, .following{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    height: 100%;
+    cursor: pointer;
+    transition: text-decoration 0.3s ease-in-out;
+}
+.foryou:hover, .following:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.show {
+    color: white;
+}
+.hidden {
+    color: rgba(255, 255, 255, 0.2);
+}
+.underline {
+    position: absolute;
+    bottom: 0;
+    width: 8%;
+    border-width: 0 0 4px;
+    border-style: solid;
+    border-color: #7cbbe5;
+    border-radius: 4px;
+}
+.hiddenUnder {
+    display: none;
+}
