@@ -4,6 +4,7 @@
     font-weight: 600;
     height: 53px;
     padding: 1rem 1rem;
+    position: sticky;
 }
 .titleHeader > p {
     font-size: 1.3rem;

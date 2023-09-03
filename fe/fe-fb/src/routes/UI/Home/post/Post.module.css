@@ -45,3 +45,6 @@
 .grbutton {
     width: 20%;
 }
+.openFolder input {
+    display: none;
+}
