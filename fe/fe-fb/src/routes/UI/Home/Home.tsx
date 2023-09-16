@@ -1,5 +1,5 @@
 import classes from "./Home.module.css";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { homeLink } from "../../../lib/Data/LinkHome";
 import Foryou from "./foryou /Foryou";
 import Following from "./Following/Following";

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import classes from "./Post.module.css";
 import avt from "../../../../assets/avatar.jpg";
 import { IconTweetData } from "../../../../lib/Data/Tweet";
@@ -7,10 +7,17 @@ import Button from "../../../../components/Button";
 
 function Post() {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
-  const handleInputChange = (event: any) => {
-    const selectedFile = event.target.files[0];
-    console.log("Selected file:", selectedFile);
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    console.log(file);
+    if (file) {
+      const imgUrl = URL.createObjectURL(file);
+
+      setSelectedImg(imgUrl);
+    }
   };
 
   const handleClick = () => {
@@ -25,8 +32,15 @@ function Post() {
         <img src={avt} alt="" className={classes.img} />
       </div>
       <div className={classes.tweet}>
-        <div>
+        <div
+          className={`${classes.grTextAndImg} ${selectedImg && classes.addImg}`}
+        >
           <input type="text" placeholder="What is happenning?!" />
+          {selectedImg && (
+            <div>
+              <img src={selectedImg} alt="Selected" />
+            </div>
+          )}
         </div>
         <div className={classes.grActionTweet}>
           <div className={classes.grICon}>
