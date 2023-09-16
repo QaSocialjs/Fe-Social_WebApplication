@@ -3,7 +3,7 @@
     height: fit-content;
     padding: 1rem 1rem;
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     border-bottom:  0.2px solid rgba(255, 255, 255, 0.2);
 }
 .Post .img {
