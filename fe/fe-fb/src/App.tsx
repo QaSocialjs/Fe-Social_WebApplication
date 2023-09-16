@@ -5,9 +5,8 @@ import Signup from "./routes/signup/Signup";
 import Erorr from "./routes/UI/erorr/Erorr";
 import Home from "./routes/UI/Home/Home";
 import { MainLayout } from "./components/layout/main-layout";
-import Foryou from "./routes/UI/Home/foryou /Foryou";
-import Following from "./routes/UI/Home/Following/Following";
 import { HomeLayout } from "./components/layout/common-layout";
+import VerifyToken from "./Context/VerifyToken";
 function App() {
   return (
     <Router>
@@ -30,11 +29,13 @@ function App() {
         <Route
           path="/Home"
           element={
+            // <VerifyToken>
             <MainLayout>
               <HomeLayout>
                 <Home></Home>
               </HomeLayout>
             </MainLayout>
+            // </VerifyToken>
           }
         ></Route>
       </Routes>
