@@ -2,7 +2,7 @@
     color: white;
     width: 60%;
     border-left: 0.2px solid rgba(255, 255, 255, 0.2);
-    height: 100vh;
+    min-height: 100vh;
 }
 .chossionHome {
     display: flex;

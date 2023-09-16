@@ -1,5 +1,5 @@
 import classes from "./Home.module.css";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { homeLink } from "../../../lib/Data/LinkHome";
 import Foryou from "./foryou /Foryou";
 import Following from "./Following/Following";
@@ -7,6 +7,7 @@ import TitleHeader from "../../../components/UI/Title";
 import { Quad, gsap } from "gsap";
 import { Flip } from "gsap/dist/Flip";
 import Post from "./post/Post";
+import UserData from "./UserData/UserData";
 const Home = (): React.ReactElement => {
   let state: Flip.FlipState;
   gsap.registerPlugin(Flip);
