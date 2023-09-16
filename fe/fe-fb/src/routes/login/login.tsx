@@ -33,7 +33,7 @@ function Login() {
   });
   useEffect(() => {
     if (loginStatus === "Login successfully") {
-      navigate("/Dashboard");
+      navigate("/Home");
     }
   }, [loginStatus]);
   return (
