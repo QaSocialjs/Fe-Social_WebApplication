@@ -1,0 +1,107 @@
+@import './theme.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .outline-focus {
+    outline: 2px solid theme('colors.accent.400');
+    outline-offset: 1px;
+  }
+  .input {
+	@apply border-solid border-[1px] border-primary-950 border-opacity-30;
+  }
+  .hover-input:hover {
+	border: solid 1px theme('colors.accent.300');
+  }
+  .hover-input:focus {
+	border: solid 2px theme('colors.accent.300');
+  }
+  .hover-input:active {
+	border: solid 2px theme('colors.accent.300');
+  }
+}
+
+@layer base {
+	html {
+	  font-size: 100%;
+	  margin: 0;
+	  padding: 0;
+	  border: none;
+	}
+  
+	body {
+	  font-family: theme('fontFamily.sans-serif');
+	  color: theme('colors.primary.950');
+	  background-color: theme('colors.primary.100');
+	  font-weight: 400;
+	  line-height: theme('lineHeight.body');
+	  margin: 0;
+	  padding: 0;
+	  border: none;
+	}
+  
+	*[data-focused],
+	*[data-disabled] {
+	  outline: none;
+	}
+  
+	*[data-focus-visible] {
+	  @apply outline-focus;
+	}
+  
+	*[data-pressed] {
+	  @apply outline-focus;
+	}
+  
+	p {
+	  font-size: theme('fontSize.base');
+	}
+  
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+	  font-family: theme('fontFamily.display');
+	  font-weight: 400;
+	  line-height: theme('lineHeight.heading');
+	}
+  
+	h1 {
+	  font-size: theme('fontSize.3xl');
+	}
+  
+	h2 {
+	  font-size: theme('fontSize.2xl');
+	}
+  
+	h3 {
+	  font-size: theme('fontSize.xl');
+	}
+  
+	h4 {
+	  font-size: theme('fontSize.lg');
+	}
+  
+	h5 {
+	  font-size: theme('fontSize.md');
+	}
+  
+	h6 {
+	  font-size: theme('fontSize.base');
+	}
+  
+	small {
+	  font-size: theme('fontSize.sm');
+	}
+  
+	.bg-img {
+		background-image: url('./assets/bg4.png');
+		background-repeat: no-repeat;
+		background-position: center right;
+		background-size: auto auto;
+		opacity: 1;
+	}
+  }

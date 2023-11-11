@@ -1,0 +1,52 @@
+:root {
+    --theme-accent-50: 126 180 246;
+    --theme-accent-100: 107 169 245;
+    --theme-accent-200: 69 147 242;
+    --theme-accent-300: 31 125 240;
+    --theme-accent-400: 15 105 215;
+    --theme-accent-500: 12 86 177;
+    --theme-accent-600: 8 60 124;
+    --theme-accent-700: 5 35 72;
+    --theme-accent-800: 1 9 19;
+    --theme-accent-900: 0 0 0;
+    --theme-accent-950: 0 0 0;
+
+    --theme-primary-50: 1 1 1;
+    --theme-primary-100: 0.969 0.969 0.969;
+    --theme-primary-200: 0.749 0.749 0.749;
+    --theme-primary-300: 0.522 0.522 0.522;
+    --theme-primary-400: 0.302 0.302 0.302;
+    --theme-primary-500: 0.078 0.078 0.078;
+    --theme-primary-600: 0.059 0.059 0.059;
+    --theme-primary-700: 0.051 0.051 0.051;
+    --theme-primary-800: 0.031 0.031 0.031;
+    --theme-primary-900: 0.02 0.02 0.02;
+    --theme-primary-950: 0.012 0.012 0.012;
+}
+
+:root[class~='dark'] {
+    --theme-accent-50: 255 255 255;
+    --theme-accent-100: 255 255 255;
+    --theme-accent-200: 251 252 255;
+    --theme-accent-300: 211 222 254;
+    --theme-accent-400: 171 192 253;
+    --theme-accent-500: 131 162 252;
+    --theme-accent-600: 76 121 251;
+    --theme-accent-700: 21 80 249;
+    --theme-accent-800: 5 57 210;
+    --theme-accent-900: 4 42 155;
+    --theme-accent-950: 3 35 127;
+
+
+    --theme-primary-950: 0.961 0.961 0.961;
+    --theme-primary-900: 0.91 0.91 0.91;
+    --theme-primary-800: 0.831 0.831 0.831;
+    --theme-primary-700: 0.741 0.741 0.741;
+    --theme-primary-600: 0.651 0.651 0.651;
+    --theme-primary-500: 0.565 0.565 0.565;
+    --theme-primary-400: 0.451 0.451 0.451;
+    --theme-primary-300: 0.341 0.341 0.341;
+    --theme-primary-200: 0.231 0.231 0.231;
+    --theme-primary-100: 0.11 0.11 0.11;
+    --theme-primary-50: 0.059 0.059 0.059;
+}
