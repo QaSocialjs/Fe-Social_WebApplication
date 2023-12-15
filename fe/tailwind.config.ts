@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import tailwindCssReactAriaComponents from "tailwindcss-react-aria-components";
+import { withAnimations } from "animated-tailwindcss";
 
 const fontFamilyBase =
   "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
@@ -34,6 +37,32 @@ const config: Config = {
           800: `rgb(var(--theme-accent-800) / <alpha-value>)`,
           900: `rgb(var(--theme-accent-900) / <alpha-value>)`,
           950: `rgb(var(--theme-accent-950) / <alpha-value>)`,
+        },
+        negative: {
+          50: "color(display-p3 var(--theme-negative-50) / <alpha-value>)",
+          100: "color(display-p3 var(--theme-negative-100) / <alpha-value>)",
+          200: "color(display-p3 var(--theme-negative-200) / <alpha-value>)",
+          300: "color(display-p3 var(--theme-negative-300) / <alpha-value>)",
+          400: "color(display-p3 var(--theme-negative-400) / <alpha-value>)",
+          500: "color(display-p3 var(--theme-negative-500) / <alpha-value>)",
+          600: "color(display-p3 var(--theme-negative-600) / <alpha-value>)",
+          700: "color(display-p3 var(--theme-negative-700) / <alpha-value>)",
+          800: "color(display-p3 var(--theme-negative-800) / <alpha-value>)",
+          900: "color(display-p3 var(--theme-negative-900) / <alpha-value>)",
+          950: "color(display-p3 var(--theme-negative-950) / <alpha-value>)",
+        },
+        positive: {
+          50: "color(display-p3 var(--theme-positive-50) / <alpha-value>)",
+          100: "color(display-p3 var(--theme-positive-100) / <alpha-value>)",
+          200: "color(display-p3 var(--theme-positive-200) / <alpha-value>)",
+          300: "color(display-p3 var(--theme-positive-300) / <alpha-value>)",
+          400: "color(display-p3 var(--theme-positive-400) / <alpha-value>)",
+          500: "color(display-p3 var(--theme-positive-500) / <alpha-value>)",
+          600: "color(display-p3 var(--theme-positive-600) / <alpha-value>)",
+          700: "color(display-p3 var(--theme-positive-700) / <alpha-value>)",
+          800: "color(display-p3 var(--theme-positive-800) / <alpha-value>)",
+          900: "color(display-p3 var(--theme-positive-900) / <alpha-value>)",
+          950: "color(display-p3 var(--theme-positive-950) / <alpha-value>)",
         },
       },
       fontSize: {
@@ -73,4 +102,4 @@ const config: Config = {
   ],
 };
 
-export default config;
+export default withAnimations(config as any);
