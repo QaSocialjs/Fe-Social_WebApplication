@@ -6,7 +6,11 @@ const LayoutAuthentication = ({
   children,
   className,
 }: typeProps): React.ReactElement => {
-  return <div className={cn("", className)}>{children}</div>;
+  return (
+    <div className={cn("flex justify-center items-center", className)}>
+      {children}
+    </div>
+  );
 };
 
 export default LayoutAuthentication;
