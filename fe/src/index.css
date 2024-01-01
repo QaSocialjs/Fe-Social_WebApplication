@@ -1,28 +1,33 @@
 @import './theme.css';
+@import './lib/stylesheet/input.css';
+@import './lib/stylesheet/list-item.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .outline-focus {
-    outline: 2px solid theme('colors.accent.400');
+    outline: 2px solid theme('colors.accent.200');
     outline-offset: 1px;
   }
   .input {
 	@apply border-solid border-[1px] border-primary-950 border-opacity-30;
   }
   .hover-input:hover {
-	border: solid 1px theme('colors.accent.300');
+	border: solid 1px theme('colors.accent.200');
   }
   .hover-input:focus {
-	border: solid 2px theme('colors.accent.300');
+	border: solid 2px theme('colors.accent.200');
   }
   .hover-input:active {
-	border: solid 2px theme('colors.accent.300');
+	border: solid 2px theme('colors.accent.200');
   }
 }
 
 @layer base {
+	* {
+		box-sizing: border-box;
+	}
 	html {
 	  font-size: 100%;
 	  margin: 0;
@@ -95,13 +100,5 @@
   
 	small {
 	  font-size: theme('fontSize.sm');
-	}
-  
-	.bg-img {
-		background-image: url('./assets/bg4.png');
-		background-repeat: no-repeat;
-		background-position: center right;
-		background-size: auto auto;
-		opacity: 1;
 	}
   }
