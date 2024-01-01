@@ -1,5 +1,3 @@
-import React from "react";
-
 function OtherLogin() {
   return (
     <div className="flex-col gap-4 flex">
