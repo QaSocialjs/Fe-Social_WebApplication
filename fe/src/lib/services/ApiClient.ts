@@ -1,4 +1,11 @@
-import { fromPromise, ok, errAsync } from "neverthrow";
+import {
+  fromPromise,
+  ok,
+  errAsync,
+  err,
+  fromSafePromise,
+  ResultAsync,
+} from "neverthrow";
 import { ApiError } from "./ErrorApi";
 
 interface ApiClientOption {
@@ -52,21 +59,12 @@ export class ApiClient {
     const url = typeof input === "string" ? input : input.pathname;
     const record: Record<string, string> = ApiClient.makeHeader(headers);
     if (options.body) {
-      record["Content-type"] ??=
+      record["Content-Type"] ??=
         options.body instanceof FormData || options.body instanceof ArrayBuffer
           ? "multipart/form-data"
           : "application/json";
     }
     const [path, query] = url.split("?", 2);
-    // console.log(
-    //   this._option.baseUrl +
-    //     "/" +
-    //     this._option.version +
-    //     "/" +
-    //     trim(path, "/").split("/").join("/") +
-    //     "?" +
-    //     query
-    // );
     return fromPromise(
       fetch(
         this._option.baseUrl +
@@ -87,10 +85,42 @@ export class ApiClient {
           : undefined
       ),
       (e) => (e instanceof Error ? e : new Error("Unexpected error"))
-    ).andThen((x) =>
-      x.ok
-        ? ok(x)
-        : errAsync(x.json()).mapErr(async (x) => ApiError.from(await x))
+    ).andThen(
+      (x) =>
+        x.ok
+          ? ok(x)
+          : fromPromise(x.json(), () => {
+              console.log("x", x);
+              const errType = x.headers.get("X-Error-Type") ?? "";
+              fromSafePromise(
+                ApiError.from({
+                  status: x.status,
+                  title: x.statusText,
+                  type: "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.5",
+                  errors: {
+                    XErrorType: errType,
+                  },
+                })
+              ).andThen((x) => err(x));
+            }).andThen((x) =>
+              fromPromise(ApiError.from(x), () =>
+                fromSafePromise(
+                  ApiError.from({
+                    status: x.status,
+                    title: x.statusText,
+                    type: "https://tools.ietf.org/html/rfc7231#section-6.5.5",
+                  })
+                ).andThen((x) => err(x))
+              ).andThen((x) => err(x))
+            )
+      // .mapErr(async (x) =>
+      //   x instanceof ResultAsync
+      //     ? x.match(
+      //         (x) => x,
+      //         (x) => x
+      //       )
+      //     : x
+      // )
     );
   }
 
@@ -98,6 +128,12 @@ export class ApiClient {
     return this.fetch(input, {
       ...options,
       method: "GET",
+    });
+  }
+  public put(input: string | URL, options?: RequestOptions) {
+    return this.fetch(input, {
+      ...options,
+      method: "PUT",
     });
   }
   public post(input: string | URL, options?: RequestOptions) {
