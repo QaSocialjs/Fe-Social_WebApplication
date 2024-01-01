@@ -1,23 +1,26 @@
-import { User } from "@lib/models/User";
-import { PayloadAction, SerializedError, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { Login, Signup } from "./UserThunk";
 import { ApiError } from "@lib/services/ErrorApi";
-import { NavigationType } from "react-router";
+import { Ok, ResultAsync } from "neverthrow";
 
 type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };
 interface UserState {
-  user: User | null;
   loading: boolean;
-  errors: ApiError | null;
+  errors: {
+    message: string;
+    XErrorType: string;
+  } | null;
   success: boolean;
 }
 
 const initialState: UserState = {
-  user: null,
   loading: false,
-  errors: null,
+  errors: {
+    message: "",
+    XErrorType: "",
+  },
   success: false,
 };
 
@@ -33,12 +36,23 @@ export const UserSlice = createSlice({
       })
       .addCase(Login.fulfilled, (state) => {
         state.loading = false;
+        state.errors = null;
+        state.success = true;
       })
       .addCase(Login.rejected, (state, action) => {
-        console.log(action.payload);
+        const result = action.payload as Ok<
+          Response,
+          void | Error | ApiError | ResultAsync<never, ApiError>
+        >;
+        if (result.isErr() && result.error instanceof ApiError) {
+          const apiError = result.error as ApiError;
+
+          state.errors = {
+            message: apiError.details.errors?.message!,
+            XErrorType: apiError.details.errors?.XErrorType!,
+          };
+        }
         state.loading = false;
-        state.errors = action.payload as ApiError;
-        console.log(state.errors);
       })
       .addCase(Signup.pending, (state) => {
         state.success = false;
@@ -51,7 +65,18 @@ export const UserSlice = createSlice({
       })
       .addCase(Signup.rejected, (state, action) => {
         state.loading = false;
-        state.errors = action.payload as ApiError;
+        const result = action.payload as Ok<
+          Response,
+          void | Error | ApiError | ResultAsync<never, ApiError>
+        >;
+        if (result.isErr() && result.error instanceof ApiError) {
+          const apiError = result.error as ApiError;
+
+          state.errors = {
+            message: apiError.details.errors?.message!,
+            XErrorType: apiError.details.errors?.XErrorType!,
+          };
+        }
       });
   },
   reducers: {},
