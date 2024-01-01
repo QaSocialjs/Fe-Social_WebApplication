@@ -1,7 +1,6 @@
 import { FormikHelpers } from "formik";
 import Form from "@components/Form";
 import TextField from "@components/TextField";
-import Checkbox from "@components/Checkbox";
 import PasswordField from "@components/PasswordField";
 import Link from "@components/Link";
 import Button from "@components/Button";
@@ -15,15 +14,35 @@ import ProgressCircle from "@components/ProgressCricle";
 import BoxAlert from "@components/BoxAlert";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getLoginFormSchema } from "./index";
+import { getSignupFormSchema } from "./index";
 import { Signup } from "@lib/redux/user/UserThunk";
 import { useNavigate } from "react-router";
+import DatePicker from "@components/DatePicker";
+import SelectFiled from "@components/SelectFiled";
+import { CheckIcon } from "@heroicons/react/24/solid";
+import ListBoxItem from "@components/ListBoxItem";
+import { User } from "@lib/models/User";
+import { TypeErrorAuthenticate } from "@lib/utils/typeErrorAuthentication";
+
+export const enum Gender {
+  Male = 1,
+  Female,
+}
+const genderNames = {
+  [Gender.Male]: "Male",
+  [Gender.Female]: "Female",
+};
+
+const genders = [
+  { key: 1, value: Gender.Male },
+  { key: 2, value: Gender.Female },
+];
 
 function FormSignUp() {
   const dispatch = hookDispatchThunk();
 
   const { t, i18n } = useTranslation();
-  const schema = useMemo(() => getLoginFormSchema(), [i18n.language]);
+  const schema = useMemo(() => getSignupFormSchema(), [i18n.language]);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
@@ -34,7 +53,7 @@ function FormSignUp() {
   const { loading, errors, success } = useSelector(
     (state: RootState) => ({
       loading: state.loading,
-      errors: state.errors as ApiError,
+      errors: state.errors,
       success: state.success,
     }),
     (prev, curr) =>
@@ -42,9 +61,8 @@ function FormSignUp() {
       prev.errors === curr.errors &&
       prev.success === curr.success
   );
-
   useEffect(() => {
-    if (errors !== null && errors.details) {
+    if ((errors !== null && TypeErrorAuthenticate(errors.XErrorType)) === 1) {
       const timer = setTimeout(() => setTimeErr(false), 2000);
       setTimeErr(true);
       return () => {
@@ -64,35 +82,69 @@ function FormSignUp() {
     }
   }, [success]);
   return (
-    <div className="w-[25rem] flex flex-col gap-6">
+    <div className="w-[28rem] flex flex-col gap-6">
       <Form
         className="flex flex-col gap-6 w-full"
         validationSchema={schema}
-        initialValues={{ email: "", password: "", confirmpassword: "" }}
+        initialValues={{
+          email: "",
+          password: "",
+          confirmpassword: "",
+          firstName: "",
+          lastName: "",
+          age: "",
+          gender: -1,
+        }}
         onSubmit={(values: any, formikHelpers: FormikHelpers<any>) => {
           dispatch(
             Signup({
-              email: values.email,
-              password: values.password,
-              confirmpassword: values.confirmpassword,
+              ...values,
             })
-          ).then(() => {
-            formikHelpers.resetForm();
-            if (emailInputRef.current) {
-              emailInputRef.current.value = "";
+          ).then((e: any) => {
+            if (e.payload.isOk()) {
+              formikHelpers.resetForm();
+              if (emailInputRef.current) {
+                emailInputRef.current.value = "";
+              }
+              if (passwordInputRef.current) {
+                passwordInputRef.current.value = "";
+              }
+              if (confirmPasswordInputRef.current) {
+                confirmPasswordInputRef.current.value = "";
+              }
+              setTimeout(async () => {
+                const user = (await e.payload.value.json()) as User;
+                const emailUrl = user.email.split(".")[0];
+                navigate(`/confirmCode/${emailUrl}`);
+              }, 1900);
             }
-            if (passwordInputRef.current) {
-              passwordInputRef.current.value = "";
-            }
-            if (confirmPasswordInputRef.current) {
-              confirmPasswordInputRef.current.value = "";
-            }
-            setTimeout(() => {
-              navigate("/login");
-            }, 3000);
           });
         }}
       >
+        <div className="flex gap-4 justify-between w-full">
+          <TextField
+            // ref={emailInputRef}
+            name="firstName"
+            id="firstName"
+            isRequired
+            label={t("authentication.signup.firstname.label")}
+            type="text"
+            className="flex flex-col"
+            inputClassName="text-base font-bold py-3 bg-primary-100"
+            labelClassName="text-base"
+          ></TextField>
+          <TextField
+            // ref={emailInputRef}
+            name="lastName"
+            id="lastName"
+            isRequired
+            label={t("authentication.signup.lastname.label")}
+            type="text"
+            className="flex flex-col"
+            inputClassName="text-base font-bold py-3 bg-primary-100"
+            labelClassName="text-base"
+          ></TextField>
+        </div>
         <TextField
           ref={emailInputRef}
           name="email"
@@ -100,7 +152,7 @@ function FormSignUp() {
           isRequired
           label={t("authentication.signup.email.label")}
           type="text"
-          className="flex flex-col text-primary-0"
+          className="flex flex-col"
           inputClassName="text-base font-bold py-3 bg-primary-100"
           labelClassName="text-base"
         ></TextField>
@@ -126,6 +178,38 @@ function FormSignUp() {
           inputClassName="text-base font-bold py-3 bg-primary-100"
           labelClassName="text-base"
         ></PasswordField>
+        <DatePicker
+          id="age"
+          name="age"
+          label={t("authentication.signup.age.label")}
+          isRequired
+          className="grid w-full"
+        />
+        <SelectFiled
+          label={t("authentication.signup.gender.label")}
+          name="gender"
+          aria-label={t("authentication.signup.gender.label")}
+          isRequired
+          className="grid w-full content-start bg-primary-50"
+        >
+          {genders.map(({ key, value }) => (
+            <ListBoxItem
+              className="flex justify-between"
+              key={key}
+              id={value}
+              textValue={genderNames[value]}
+            >
+              {({ isSelected }) => (
+                <>
+                  <span>{genderNames[value]}</span>
+                  {isSelected ? (
+                    <CheckIcon className="text-accent-500 w-4 h-4 group-hover:text-inherit" />
+                  ) : null}
+                </>
+              )}
+            </ListBoxItem>
+          ))}
+        </SelectFiled>
         <Button
           className="w-full py-3 rounded-full relative mt-2"
           type="submit"
@@ -137,7 +221,7 @@ function FormSignUp() {
               "scale-0": loading === true,
             })}
           >
-            Signup
+            {t("authentication.signup.button")}
           </span>
           <Transition
             show={loading === true}
@@ -154,16 +238,11 @@ function FormSignUp() {
           </Transition>
         </Button>
       </Form>
-      <div className="flex items-center justify-between">
-        <hr className="w-[40%] h-[1.2px] bg-primary-300 outline-none border-none" />
-        <span className="text-xs text-primary-300 font-bold">Other hand</span>
-        <hr className="w-[40%] h-[1.2px] bg-primary-300 outline-none border-none" />
-      </div>
       <div>
         <span className="text-xs">
           {t("authentication.footer.signup.title")}{" "}
         </span>
-        <Link className="text-accent-300" href="/login">
+        <Link className="text-accent-100" href="/login">
           {t("authentication.footer.signup.link")}
         </Link>
       </div>
@@ -175,11 +254,11 @@ function FormSignUp() {
         leave="transition ease-in-out duration-300"
         leaveTo="opacity-0 scale-0"
       >
-        {errors && errors.details.errors && (
+        {errors && errors.message && (
           <BoxAlert
             variant="negative"
-            title="unknownError"
-            body={errors.details.errors.message}
+            title={errors.XErrorType ?? "AccountIsExist"}
+            body={errors.message}
           ></BoxAlert>
         )}
       </Transition>
