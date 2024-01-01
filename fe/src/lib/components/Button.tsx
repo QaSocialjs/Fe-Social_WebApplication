@@ -16,8 +16,8 @@ const baseClass =
   "px-4 py-0.5 rounded-md border-none transition-[background-color_outline] ease-in-out font-bold";
 
 const variantClass: Record<NonNullable<Props["variant"]>, string> = {
-  accent: "bg-accent-400 text-primary-50 rac-hover:bg-accent-500",
-  primary: "bg-primary-900 text-primary-100",
+  accent: "bg-accent-200 text-primary-50 rac-hover:bg-accent-300",
+  primary: "bg-primary-900 text-primary-100 rac-hover:border-primary-300",
 };
 const disabledClass =
   "rac-disabled:bg-primary-500 rac-disabled:bg-opacity-20 rac-disabled:text-primary-950 rac-disabled:text-opacity-20";

@@ -12,7 +12,7 @@ export const useFormContext = (): FormikProps<any> => {
 };
 interface FormProps {
   children: React.ReactNode;
-  validationSchema: Yup.ObjectSchema<any>;
+  validationSchema?: Yup.ObjectSchema<any>;
   initialValues: any;
   onSubmit: (
     values: any,
@@ -32,6 +32,7 @@ export default function Form({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: onSubmit,
+    enableReinitialize: true,
   });
   return (
     <form

@@ -4,11 +4,12 @@ import {
   type LinkProps as AriaLinkProps,
 } from "react-aria-components";
 import { cn } from "../utils/utils";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export type LinkProps = AriaLinkProps;
 
 const baseClass =
-  "text-cod-gray-900 text-sm gap-2 font-bold outline-none cursor-pointer";
+  "text-accent-500 text-sm gap-2 font-bold outline-none cursor-pointer";
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   { className, ...props }: LinkProps,
   ref
