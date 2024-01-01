@@ -1,4 +1,4 @@
-import { object, string, number, array } from "yup";
+import { object, string, number } from "yup";
 
 export const problemDetailSchema = object({
   type: string(),
@@ -8,5 +8,6 @@ export const problemDetailSchema = object({
   traceId: string().optional(),
   errors: object({
     message: string().required(),
+    XErrorType: string(),
   }).optional(),
 });
