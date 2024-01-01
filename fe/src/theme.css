@@ -1,16 +1,17 @@
 :root {
-    --theme-accent-50: 126 180 246;
-    --theme-accent-100: 107 169 245;
-    --theme-accent-200: 69 147 242;
-    --theme-accent-300: 31 125 240;
-    --theme-accent-400: 15 105 215;
-    --theme-accent-500: 12 86 177;
-    --theme-accent-600: 8 60 124;
-    --theme-accent-700: 5 35 72;
-    --theme-accent-800: 1 9 19;
-    --theme-accent-900: 0 0 0;
-    --theme-accent-950: 0 0 0;
+    --theme-accent-50: 0.294 0.337 0.949 ;
+    --theme-accent-100: 0.235 0.282 0.945;
+    --theme-accent-200: 0.122 0.176 0.937;
+    --theme-accent-300:0.063 0.118 0.878 ;
+    --theme-accent-400: 0.055 0.102 0.745;
+    --theme-accent-500: 0.047 0.086 0.635;
+    --theme-accent-600: 0.039 0.071 0.522;
+    --theme-accent-700:  0.031 0.055 0.412;
+    --theme-accent-800: 0.024 0.039 0.298 ;
+    --theme-accent-900: 0.012 0.024 0.169 ;
+    --theme-accent-950: 0.008 0.016 0.114;
 
+    
     --theme-primary-50: 1 1 1;
     --theme-primary-100: 0.969 0.969 0.969;
     --theme-primary-200: 0.749 0.749 0.749;
