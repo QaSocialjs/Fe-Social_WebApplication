@@ -19,6 +19,7 @@ interface FormProps {
     formikHelpers: FormikHelpers<any>
   ) => void | Promise<any>;
   className?: string;
+  isOnblur?: boolean;
 }
 const baseClass = "w-fit h-fit";
 export default function Form({
@@ -27,12 +28,14 @@ export default function Form({
   validationSchema,
   initialValues,
   onSubmit,
+  isOnblur,
 }: FormProps) {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: onSubmit,
     enableReinitialize: true,
+    validateOnBlur: isOnblur,
   });
   return (
     <form
