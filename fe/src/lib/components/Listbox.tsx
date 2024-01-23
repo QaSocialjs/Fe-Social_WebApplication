@@ -1,35 +1,23 @@
-import {
-  Listbox as HeadlessUiListbox,
-  Transition,
-  type ListboxProps as HeadlessUiListboxProps,
-} from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import clsx from "clsx";
-import { Fragment, type Key, type ReactNode } from "react";
-export type ListboxProps<TType, TActualType> = Omit<
-  HeadlessUiListboxProps<"div", TType, TActualType>,
-  "value" | "onChange"
+import { cn } from "@lib/utils/utils";
+import React from "react";
+import { ListBoxProps, ListBox as AriaListBox } from "react-aria-components";
+
+export type ListboxProps<T extends Object> = Omit<
+  ListBoxProps<T>,
+  "children"
 > & {
-  items: TType[];
-  render(value: TType): ReactNode;
-  placement?: "top" | "bottom";
-  value?: TType;
-  onChange?(value: TType): void;
+  children: React.ReactNode | ((value: T) => React.ReactNode);
+  className?: string;
 };
-export function Listbox<TType extends { key: Key }, TActualType>({
-  items,
-  render,
+
+export function Listbox<T extends object>({
+  children,
   className,
-  placement = "top",
   ...props
-}: ListboxProps<TType, TActualType>) {
+}: ListboxProps<T>) {
   return (
-    <HeadlessUiListbox<"div", TType, TActualType> {...props}>
-      {({ open, value }) => (
-        <>
-          <div>{render(value)}</div>
-        </>
-      )}
-    </HeadlessUiListbox>
+    <AriaListBox {...props} className={cn("listbox grid", className)}>
+      {children}
+    </AriaListBox>
   );
 }

@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+    .listbox {
+        border: 1px solid  theme('colors.primary.200');
+        border-color: theme('colors.primary.200');
+        border-radius: theme('borderRadius.md');
+        transition-timing-function: ease-in-out;
+        transition-property: background-color outline;
+        transition-duration: theme('transitionDuration.DEFAULT');
+        &[data-focus-visible] {
+        outline: none;
+    }
+    }
+}
