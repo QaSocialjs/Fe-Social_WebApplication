@@ -86,10 +86,15 @@ function Formlogin() {
               Response,
               void | Error | ApiError | ResultAsync<never, ApiError>
             >;
-
             if (result.isErr() && result.error instanceof ApiError) {
               const apiError = result.error as ApiError;
-              if (TypeErrorAuthenticate(apiError.details.errors?.XErrorType!)) {
+              console.log(
+                TypeErrorAuthenticate(apiError.details.errors?.XErrorType!)
+              );
+              if (
+                TypeErrorAuthenticate(apiError.details.errors?.XErrorType!) ===
+                -1
+              ) {
                 setIsOpen(true);
               }
             } else {
@@ -207,17 +212,19 @@ function Formlogin() {
       </Transition>
 
       <Modal isExistingButotn={false} isOpen={isOpen} setIsOpen={setIsOpen}>
-        <div className="flex justify-between">
+        <div className="flex justify-between p-6">
           <h3 className="font-semibold leading-6 m-0 text-primary-400">
             Unconfirmed email.
           </h3>
           <ExclamationCircleIcon className="w-5 h-5 text-negative-500" />
         </div>
-        <p className="mt-3 text-primary-300 text-xs">
-          {t("authentication.login.confirmEmail.text")}
-        </p>
+        <div className="px-6">
+          <p className="mt-3 text-primary-300 text-xs">
+            {t("authentication.login.confirmEmail.text")}
+          </p>
+        </div>
 
-        <div className="mt-6 flex justify-end gap-2">
+        <div className="mt-6 flex justify-end gap-2 p-6">
           <Button
             onPress={() => setIsOpen(false)}
             className="bg-primary-100 text-primary-950 border border-solid border-primary-200 transition-colors"

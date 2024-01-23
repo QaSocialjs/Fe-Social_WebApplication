@@ -29,7 +29,7 @@ export default function Login(): React.ReactElement {
       <div className="flex justify-center items-center ">
         <div className="w-fit mx-auto flex gap-6 py-12 h-full flex-col">
           <h3 className="text-primary-700 font-bold m-0">
-            {t("authentication.login.header")}
+            {t("authentication.login.header.title")}
           </h3>
           <Formlogin />
         </div>
