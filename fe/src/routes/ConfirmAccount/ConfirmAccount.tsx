@@ -242,50 +242,52 @@ function ConfirmAccount() {
           ) : null}
         </Transition>
         <Modal isExistingButotn={false} isOpen={isOpen} setIsOpen={setIsOpen}>
-          <div className="flex justify-between items-center">
-            <h3 className="font-semibold leading-6 m-0 text-primary-400">
-              {t("authentication.codeconfirm.modal.title")}
-            </h3>
-            <CheckCircleIcon className="w-5 h-5 text-positive-500" />
-          </div>
-          <p className="mt-3 text-primary-300 text-xs">
-            {t("authentication.codeconfirm.modal.text")}
-          </p>
-          <div
-            className={clsx("mt-6 flex justify-end items-center", {
-              "justify-between": errLogin !== "",
-            })}
-          >
-            {errLogin ? (
-              <p className="text-xs text-negative-500">{errLogin}</p>
-            ) : null}
-            <div className="flex justify-end">
-              <Button
-                className="px-3 py-2 relative"
-                onPress={() => handleLoginEmailVerification()}
-              >
-                <span
-                  className={clsx("block transition ease-in-out", {
-                    "opacity-0": timeLogin === true,
-                    "scale-0": timeLogin === true,
-                  })}
+          <div className="p-6">
+            <div className="flex justify-between items-center">
+              <h3 className="font-semibold leading-6 m-0 text-primary-400">
+                {t("authentication.codeconfirm.modal.title")}
+              </h3>
+              <CheckCircleIcon className="w-5 h-5 text-positive-500" />
+            </div>
+            <p className="mt-3 text-primary-300 text-xs">
+              {t("authentication.codeconfirm.modal.text")}
+            </p>
+            <div
+              className={clsx("mt-6 flex justify-end items-center", {
+                "justify-between": errLogin !== "",
+              })}
+            >
+              {errLogin ? (
+                <p className="text-xs text-negative-500">{errLogin}</p>
+              ) : null}
+              <div className="flex justify-end">
+                <Button
+                  className="px-3 py-2 relative"
+                  onPress={() => handleLoginEmailVerification()}
                 >
-                  Ok
-                </span>
-                <Transition
-                  show={timeLogin === true}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3"
-                  enter="transition ease-in-out"
-                  enterFrom="opacity-0 scale-0"
-                  leave="transition ease-in-out duration-300"
-                  leaveTo="opacity-0 scale-0"
-                >
-                  <ProgressCircle
-                    aria-label="signing in"
-                    className="h-full text-primary-500"
-                  ></ProgressCircle>
-                </Transition>
-              </Button>
+                  <span
+                    className={clsx("block transition ease-in-out", {
+                      "opacity-0": timeLogin === true,
+                      "scale-0": timeLogin === true,
+                    })}
+                  >
+                    Ok
+                  </span>
+                  <Transition
+                    show={timeLogin === true}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3"
+                    enter="transition ease-in-out"
+                    enterFrom="opacity-0 scale-0"
+                    leave="transition ease-in-out duration-300"
+                    leaveTo="opacity-0 scale-0"
+                  >
+                    <ProgressCircle
+                      aria-label="signing in"
+                      className="h-full text-primary-500"
+                    ></ProgressCircle>
+                  </Transition>
+                </Button>
+              </div>
             </div>
           </div>
         </Modal>
