@@ -7,7 +7,6 @@ import Button from "@components/Button";
 import { hookDispatchThunk } from "@lib/hook/ReduxHook";
 import { useSelector } from "react-redux";
 import { RootState } from "@lib/redux/Store";
-import { ApiError } from "@lib/services/ErrorApi";
 import clsx from "clsx";
 import { Transition } from "@headlessui/react";
 import ProgressCircle from "@components/ProgressCricle";
@@ -21,22 +20,8 @@ import DatePicker from "@components/DatePicker";
 import SelectFiled from "@components/SelectFiled";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import ListBoxItem from "@components/ListBoxItem";
-import { User } from "@lib/models/User";
+import { User, genderNames, genders } from "@lib/models/User";
 import { TypeErrorAuthenticate } from "@lib/utils/typeErrorAuthentication";
-
-export const enum Gender {
-  Male = 1,
-  Female,
-}
-const genderNames = {
-  [Gender.Male]: "Male",
-  [Gender.Female]: "Female",
-};
-
-const genders = [
-  { key: 1, value: Gender.Male },
-  { key: 2, value: Gender.Female },
-];
 
 function FormSignUp() {
   const dispatch = hookDispatchThunk();
