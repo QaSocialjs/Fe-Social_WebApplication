@@ -14,7 +14,7 @@
     &[data-selected][data-hovered],
     &[data-hovered] {
       color: theme('colors.primary.50');
-      background-color: theme('colors.accent.500');
+      background-color: theme('colors.accent.400');
     }
     &[data-focused] {
       outline: none;
