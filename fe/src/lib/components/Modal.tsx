@@ -8,7 +8,7 @@ import {
 import Button from "./Button";
 import { Dispatch, SetStateAction } from "react";
 
-type ModalProps = ModalOverlayProps &
+export type ModalProps = ModalOverlayProps &
   React.RefAttributes<HTMLDivElement> & {
     isExistingButotn: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -39,7 +39,7 @@ function Modal({
       >
         <ModalAria
           className={({ isEntering, isExiting }) => `
-            w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl
+            w-fit max-w-4xl overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl
             ${isEntering ? "animate-in zoom-in-95 ease-out duration-300" : ""}
             ${isExiting ? "animate-out zoom-out-95 ease-in duration-200" : ""}
           `}
