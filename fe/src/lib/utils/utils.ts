@@ -7,3 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 export interface Language {
   value?: string;
 }
+export function getStringGender(gender: number): string {
+  if (gender === 1) return "Male";
+  return "Famale";
+}
