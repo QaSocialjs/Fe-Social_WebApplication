@@ -1,14 +1,14 @@
 import React from "react";
-import { typeProps } from "../utils/typeProps";
-import NavgigationBar from "../components/NavgigationBar";
-import FooterApp from "../components/footer";
+import NavigationBar from "@components/Navigation/NavigationBar";
+import { Outlet } from "react-router";
 
-const Mainlayout = ({ children }: typeProps): React.ReactNode => {
+const Mainlayout = (): React.ReactNode => {
   return (
     <div className="w-full h-full flex flex-col">
-      <NavgigationBar />
-      {children}
-      <FooterApp />
+      <NavigationBar />
+      <div className="bg-primary-50">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
 };
