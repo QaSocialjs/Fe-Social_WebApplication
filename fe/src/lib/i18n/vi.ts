@@ -2,7 +2,10 @@ export const vi = {
   translation: {
     authentication: {
       login: {
-        header: "Đăng nhập",
+        header: {
+          title: "Đăng nhập.",
+          subtitle: "It's quick and easy.",
+        },
         email: {
           label: "Email address",
           required: "Email được yêu cầu",
@@ -94,6 +97,43 @@ export const vi = {
     },
     footer: {
       text: "Đã đăng ký bản quyền.",
+    },
+    profile: {
+      about: {
+        "1": "Tổng quan",
+        "2": "Học tập và làm việc",
+        "3": "Nơi sinh sống",
+        "4": "Liên lạc và thông tin cơ bản",
+        "5": "Gia đình và mối quan hệ",
+        "6": "Chi tiết về bạn",
+        "7": "Sự kiện trong cuộc sống",
+        placedlived: {
+          required: "Làm ơn chọn thành phố.",
+        },
+        contactandinfo: {
+          header: "Thông tin liên lạc",
+          gender: {
+            label: "Giới tính",
+            required: "Xin vui lòng chọn giới tính",
+            invalid: "Xin vui lòng chọn giới tính",
+          },
+        },
+        workandeducation: {
+          work: {
+            label: "Công việc",
+            required: "Xin vui lòng nhập tên công ty.",
+          },
+          position: {
+            label: "Vị trí",
+          },
+          start: {
+            required: "Hãy chọn ngày khởi đầu.",
+          },
+          end: {
+            invalid: "Ngày kết thúc không được trước ngày bắt đầu.",
+          },
+        },
+      },
     },
   },
 };

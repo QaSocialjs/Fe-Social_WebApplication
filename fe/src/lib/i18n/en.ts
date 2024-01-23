@@ -24,7 +24,10 @@ export const en = {
         },
       },
       signup: {
-        header: "Signup",
+        header: {
+          title: "Signup",
+          subtitle: "Quickly and easy",
+        },
         email: {
           label: "Email address",
           required: "Email is a required field",
@@ -94,6 +97,43 @@ export const en = {
     },
     footer: {
       text: "All rights reserved.",
+    },
+    profile: {
+      about: {
+        "1": "Overview",
+        "2": "Work and education",
+        "3": "Places lived",
+        "4": "Contact and basic info",
+        "5": "Family and relationships",
+        "6": "Details about you",
+        "7": "Life Event",
+        placelived: {
+          required: "Please choose city.",
+        },
+        contactandinfo: {
+          header: "Contact Info",
+          gender: {
+            label: "Gender",
+            required: "Please choose a gender",
+            invalid: "Please choose a gender",
+          },
+        },
+        workandeducation: {
+          work: {
+            label: "Work",
+            required: "Please enter your company.",
+          },
+          position: {
+            label: "Position",
+          },
+          start: {
+            required: "Start Date/Time is required.",
+          },
+          end: {
+            invalid: "End date can't be before Start date.",
+          },
+        },
+      },
     },
   },
 };
