@@ -88,6 +88,18 @@ export const getUser = createAsyncThunk(
     return thunkAPI.fulfillWithValue(response);
   }
 );
+export const getAllUser = createAsyncThunk(
+  "user/getAllUser",
+  async (values: "", thunkAPI) => {
+    const response: any = await ApiClient.instance.get("/getAllUser", {
+      credentials: "include",
+    });
+    if (response.isErr()) {
+      return thunkAPI.rejectWithValue(response);
+    }
+    return thunkAPI.fulfillWithValue(response);
+  }
+);
 export const getUserId = createAsyncThunk(
   "user/getUserId",
   async (values: { id: string }, thunkAPI) => {
@@ -194,6 +206,21 @@ export const DeleteCityUser = createAsyncThunk(
   }
 );
 
+export const DeleteBioUser = createAsyncThunk(
+  "user/deleteBioUser",
+  async (values: updateValues, thunkAPI) => {
+    const response = await ApiClient.instance.delete(
+      `/deleteBio/${values.id}`,
+      {
+        credentials: "include",
+      }
+    );
+    if (response.isErr()) {
+      return thunkAPI.rejectWithValue(response);
+    }
+    return thunkAPI.fulfillWithValue(response);
+  }
+);
 export const CreatWork = createAsyncThunk(
   "user/createWork",
   async (values: updateValues, thunkAPI) => {
