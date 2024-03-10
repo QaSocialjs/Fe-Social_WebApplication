@@ -1,9 +1,14 @@
 import {
+  ArrowLeftOnRectangleIcon,
   BellAlertIcon,
   BuildingStorefrontIcon,
   ChatBubbleBottomCenterIcon,
+  Cog6ToothIcon,
+  ExclamationCircleIcon,
   HomeIcon,
+  MoonIcon,
   QrCodeIcon,
+  QuestionMarkCircleIcon,
   ServerStackIcon,
   TvIcon,
   UsersIcon,
@@ -59,6 +64,52 @@ export const dataInfor: Readonly<DataProps[]> = [
   {
     name: "Notifications",
     iconName: BellAlertIcon,
+  },
+];
+
+export const dataFriendSideBar: Readonly<DataProps[]> = [
+  {
+    name: "Home",
+    iconName: HomeIcon,
+    link: "/friends",
+  },
+  {
+    name: "Friend requests",
+    iconName: UsersIcon,
+    link: "/friends/requests",
+  },
+  {
+    name: "Suggestions",
+    iconName: UsersIcon,
+    link: "/friends/suggestions",
+  },
+];
+
+export const dataMenuProfile: Readonly<DataProps[]> = [
+  {
+    name: "Setting & privacy",
+    iconName: Cog6ToothIcon,
+    link: "/",
+  },
+  {
+    name: "Help & support",
+    iconName: QuestionMarkCircleIcon,
+    link: "/",
+  },
+  {
+    name: "Display & accessibility",
+    iconName: UsersIcon,
+    link: "/",
+  },
+  {
+    name: "Get feedback",
+    iconName: ExclamationCircleIcon,
+    link: "/",
+  },
+  {
+    name: "Log out",
+    iconName: ArrowLeftOnRectangleIcon,
+    link: "/",
   },
 ];
 export const aa: DataProps[] = [
