@@ -17,6 +17,7 @@ export interface User {
   work?: Work;
   startWork?: Date;
   endWork?: Date;
+  bio?: string;
 }
 export interface City {
   nameCity: string;
