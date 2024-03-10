@@ -37,9 +37,9 @@ function FormSignUp() {
   const navigate = useNavigate();
   const { loading, errors, success } = useSelector(
     (state: RootState) => ({
-      loading: state.loading,
-      errors: state.errors,
-      success: state.success,
+      loading: state.user.loading,
+      errors: state.user.errors,
+      success: state.user.success,
     }),
     (prev, curr) =>
       prev.loading === curr.loading &&
