@@ -2,7 +2,10 @@ import { Action, ThunkDispatch, configureStore } from "@reduxjs/toolkit";
 import UserSlice from "./user/UserSlice";
 
 export const store = configureStore({
-  reducer: UserSlice.reducer,
+  reducer: {
+    user: UserSlice.reducer,
+  },
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
