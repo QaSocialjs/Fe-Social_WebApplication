@@ -135,5 +135,11 @@ export const vi = {
         },
       },
     },
+    friends: {
+      suggest: {
+        btnAdd: "Thêm bạn",
+        btnDel: "Xóa",
+      },
+    },
   },
 };

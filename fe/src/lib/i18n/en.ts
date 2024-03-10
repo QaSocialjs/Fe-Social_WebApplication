@@ -135,5 +135,11 @@ export const en = {
         },
       },
     },
+    friends: {
+      suggest: {
+        btnAdd: "Add friend",
+        btnDel: "Remove",
+      },
+    },
   },
 };
