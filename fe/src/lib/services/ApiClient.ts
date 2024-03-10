@@ -142,6 +142,19 @@ export class ApiClient {
       method: "POST",
     });
   }
+  public patch(input: string | URL, options?: RequestOptions) {
+    return this.fetch(input, {
+      ...options,
+      method: "PATCH",
+    });
+  }
+  public delete(input: string | URL, options?: RequestOptions) {
+    return this.fetch(input, {
+      ...options,
+      method: "DELETE",
+    });
+  }
+
   private static makeHeader(headers?: HeadersInit): Record<string, string> {
     if (!headers) return {};
     return Array.isArray(headers)
