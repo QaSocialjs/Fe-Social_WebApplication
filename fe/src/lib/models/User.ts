@@ -6,7 +6,6 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
   accesstoken?: string;
   refreshtoken?: string;
   gender?: number;
@@ -18,6 +17,7 @@ export interface User {
   startWork?: Date;
   endWork?: Date;
   bio?: string;
+  phone?: number;
 }
 export interface City {
   nameCity: string;
