@@ -53,7 +53,7 @@ function AccountMenuDropBar() {
       <MenuItem id="default">
         <div className="flex flex-col items-center justify-start text-center shadow-md rounded px-4 py-2">
           <Button
-            className="flex items-center bg-transparent text-primary-950 w-full no-underline text-center gap-4"
+            className="flex items-center bg-transparent hover:bg-primary-950 hover:bg-opacity-5 py-0 text-primary-950 w-full no-underline text-center gap-4"
             variant="primary"
             as="link"
             href={user?.id}
@@ -66,7 +66,7 @@ function AccountMenuDropBar() {
               className="w-11 rounded-full"
             />
             <h3 className="font-medium">
-              {user?.lastName! + user?.firstName!}
+              {user?.lastName! + " " + user?.firstName!}
             </h3>
           </Button>
           <hr className="h-[2px] bg-primary-950 bg-opacity-40 border-none w-full" />
