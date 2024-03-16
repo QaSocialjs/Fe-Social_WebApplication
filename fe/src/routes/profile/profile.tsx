@@ -10,12 +10,16 @@ import { hookDispatch } from "@lib/hook/ReduxHook";
 import { getUserId } from "@lib/redux/user/UserThunk";
 import { ApiError } from "@lib/services/ErrorApi";
 import { Ok, ResultAsync } from "neverthrow";
+import { CheckIsFriend } from "@lib/redux/friend/CheckIsFriend";
+import { TypeOfResponse } from "@lib/utils/utils";
+import { StatusDto } from "@lib/models/Friend";
 
 function Profile() {
   const { user } = UseUserContext();
   const { id } = useParams();
   const [userProfile, setUserProfile] = useState<User | null>(null);
   const [isCurrentUser, setIsCurrentUser] = useState<boolean>(false);
+  const [statusFriend, setStatusFriend] = useState<StatusDto>();
   const dispatch = hookDispatch();
   const navigate = useNavigate();
 
@@ -30,9 +34,7 @@ function Profile() {
           Response,
           void | Error | ApiError | ResultAsync<never, ApiError>
         >;
-        console.log(response);
         if (response.isErr()) {
-          console.log("asdssa");
           navigate("/error/authenticatedError");
         }
         if (response.isOk()) {
@@ -42,8 +44,28 @@ function Profile() {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (!userProfile) return;
+    if (!user) return;
+    if (isCurrentUser === false) {
+      dispatch(
+        CheckIsFriend({ curUserId: user.id, idFr: userProfile.id! })
+      ).then(async (e: any) => {
+        const result = TypeOfResponse(e.payload);
+        result.match(
+          async (ok) => {
+            setStatusFriend((await ok.json()) as StatusDto);
+          },
+          async (err) => {
+            navigate("/error/authenticatedError");
+          }
+        );
+      });
+    }
+  }, [userProfile]);
+
   return (
-    <div className="bg-primary-100">
+    <div className="bg-primary-100 overflow-y-auto h-[calc(100vh-9vh)]">
       <div className="h-fit shadow-md flex flex-col group items-center bg-primary-50">
         <div className="h-[50vh] w-[70vw] rounded-lg bg-gradient-to-b from-primary-50 via-primary-100 border border-solid border-primary-100 to-primary-300 relative">
           <Button
@@ -54,7 +76,11 @@ function Profile() {
             Add Cover Photo
           </Button>
         </div>
-        <AvatarIndex user={userProfile!} />
+        <AvatarIndex
+          user={userProfile!}
+          statusFriend={statusFriend}
+          isCurrentUser={isCurrentUser}
+        />
         <TabFeatureProfile
           user={userProfile!}
           isCurrentUser={isCurrentUser}

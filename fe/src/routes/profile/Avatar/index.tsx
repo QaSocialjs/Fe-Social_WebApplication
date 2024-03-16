@@ -16,11 +16,14 @@ import { toImage } from "@lib/utils/service.assetInfo";
 import { fill, scale } from "@cloudinary/url-gen/actions/resize";
 import { dpr } from "@cloudinary/url-gen/actions/delivery";
 import { ar1X1 } from "@cloudinary/url-gen/qualifiers/aspectRatio";
+import { StatusDto, StatusFriend, valueStatusFriend } from "@lib/models/Friend";
 
 type Props = {
   user: User;
+  statusFriend?: StatusDto;
+  isCurrentUser: boolean | null;
 };
-function AvatarIndex({ user }: Props) {
+function AvatarIndex({ user, statusFriend, isCurrentUser }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [avatar, setAvatar] = useState<any>();
 
@@ -55,7 +58,7 @@ function AvatarIndex({ user }: Props) {
       text: "Create avatar profile picture",
     },
   ]);
-
+  console.log(statusFriend?.status);
   return (
     <div className="h-[15vh] w-[70vw]">
       <div className="relative h-full">
@@ -91,18 +94,90 @@ function AvatarIndex({ user }: Props) {
         <div className="left-64 absolute text-3xl tracking-wider font-bold flex">
           {user?.firstName} {user?.lastName}
         </div>
+
         <div className="right-4 absolute flex gap-2 mt-6">
-          <Button className="flex items-center gap-2">
-            <PlusIcon className="h-4 aspect-square" />
-            <span className="mt-1">Add Story</span>
-          </Button>
-          <Button
-            variant="primary"
-            className="px-2 py-3 bottom-12 flex items-center gap-2 justify-center bg-opacity-20 text-primary-900"
-          >
-            <PencilIcon className="h-4 aspect-square" />
-            <span>Edit Profile</span>
-          </Button>
+          {isCurrentUser ? (
+            <div className="flex gap-2">
+              <Button className="flex items-center gap-2">
+                <PlusIcon className="h-4 aspect-square" />
+                <span className="mt-1">Add Story</span>
+              </Button>
+              <Button
+                variant="primary"
+                className="px-2 py-3 bottom-12 flex items-center gap-2 justify-center bg-opacity-20 text-primary-900"
+              >
+                <PencilIcon className="h-4 aspect-square" />
+                <span>Edit Profile</span>
+              </Button>
+            </div>
+          ) : (
+            <div>
+              {statusFriend?.status.toString() ===
+              valueStatusFriend[StatusFriend.isFr] ? (
+                <div className="flex gap-2">
+                  <Button className="flex items-center gap-2">
+                    <PlusIcon className="h-4 aspect-square" />
+                    <span className="mt-1">Friends</span>
+                  </Button>
+                  <Button
+                    variant="primary"
+                    className="px-2 py-3 bottom-12 flex items-center gap-2 justify-center bg-opacity-20 text-primary-900"
+                  >
+                    <span>Message</span>
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  {statusFriend?.status.toString() ===
+                  valueStatusFriend[StatusFriend.requestFr] ? (
+                    <div className="flex gap-2">
+                      <Button className="flex items-center gap-2">
+                        <PlusIcon className="h-4 aspect-square" />
+                        <span className="mt-1">Cancel request</span>
+                      </Button>
+                      <Button
+                        variant="primary"
+                        className="px-2 py-3 bottom-12 flex items-center gap-2 justify-center bg-opacity-20 text-primary-900"
+                      >
+                        <span>Message</span>
+                      </Button>
+                    </div>
+                  ) : (
+                    <div>
+                      {statusFriend?.status.toString() ===
+                      valueStatusFriend[StatusFriend.isRequested] ? (
+                        <div className="flex gap-2">
+                          <Button className="flex items-center gap-2">
+                            <PlusIcon className="h-4 aspect-square" />
+                            <span className="mt-1">Accept friend</span>
+                          </Button>
+                          <Button
+                            variant="primary"
+                            className="px-2 py-3 bottom-12 flex items-center gap-2 justify-center bg-opacity-20 text-primary-900"
+                          >
+                            <span>Message</span>
+                          </Button>
+                        </div>
+                      ) : (
+                        <div className="flex gap-2">
+                          <Button className="flex items-center gap-2">
+                            <PlusIcon className="h-4 aspect-square" />
+                            <span className="mt-1">Add friend</span>
+                          </Button>
+                          <Button
+                            variant="primary"
+                            className="px-2 py-3 bottom-12 flex items-center gap-2 justify-center bg-opacity-20 text-primary-900"
+                          >
+                            <span>Message</span>
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <div

@@ -25,6 +25,9 @@ import SocketProvider from "@lib/context/SocketIocontext";
 import LayoutFriend from "@lib/layouts/layout-friend";
 import FriendRequestion from "./routes/friends/FriendRequestion";
 import FriendSuggestion from "./routes/friends/FriendSuggestion";
+import CardNotification from "@components/NotificationComp/CardNotification";
+import { NotificationType } from "@lib/models/Friend";
+import NotificationProvider from "@lib/context/NotificationContext";
 function App() {
   ApiClient.use(configOptions);
   let navigate = useNavigate();
@@ -39,7 +42,9 @@ function App() {
               element={
                 <UserContextProvider>
                   <SocketProvider>
-                    <Mainlayout></Mainlayout>
+                    <NotificationProvider>
+                      <Mainlayout></Mainlayout>
+                    </NotificationProvider>
                   </SocketProvider>
                 </UserContextProvider>
               }
