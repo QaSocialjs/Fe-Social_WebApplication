@@ -51,7 +51,6 @@ export default function BoxAlertProvider({
         setIsShowing(false);
         setBody("");
         setTitle("");
-        setVariant("negative");
         setIsShowing(false);
       }, 1000);
       return () => {
