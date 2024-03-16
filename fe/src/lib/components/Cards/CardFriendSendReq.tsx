@@ -57,9 +57,8 @@ function CardFriendSendReq({ name, avt, gender, id, idx }: Props) {
         setTitle("Ok");
         setVariant("positive");
       });
+      setloading(false);
     }
-
-    setloading(false);
   }
   useEffect(() => {
     if (status == null) return;

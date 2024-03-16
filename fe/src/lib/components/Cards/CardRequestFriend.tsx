@@ -41,7 +41,6 @@ function CardRequestFriend({ name, key, avt, gender, id }: Props) {
           .toURL()
       : undefined
   );
-  console.log(loading);
   function handleAcceptFrien(idReq: string) {
     setloading(true);
     dispatch(
@@ -49,7 +48,6 @@ function CardRequestFriend({ name, key, avt, gender, id }: Props) {
     ).then(async (e: any) => {
       const result = TypeOfResponse(e.payload);
       setIsShowing(true);
-      console.log(result);
       result.match(
         (ok) => {
           setTitle("Ok");
